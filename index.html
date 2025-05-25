@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>Topup Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+    }
+    .active-tab {
+      background-color: #004D40;
+      color: white;
+      border-radius: 0.5rem;
+    }
+
+    :root {
+          user-select: none;
+          --primary-color: #004D40;
+          --bg-ke-dua: #e3f2fd;
+          --bg-ke-tiga: #bbdefb;
+        }
+
+        .bg-utama {
+            background-color: var(--primary-color);
+        }
+        .bg-ke-dua {
+            background-color: var(--bg-ke-dua);
+        }
+        .bg-ke-tiga {
+            background-color: var(--bg-ke-tiga);
+        }
+
+        .color-utama {
+            color: var(--primary-color);
+        }
+        .color-ke-dua {
+            color: var(--bg-ke-dua);
+        }
+        .color-ke-tiga {
+            color: var(--bg-ke-tiga);
+        }
+
+        .my-bg { 
+            background-color: var(--primary-color); 
+        } 
+ 
+        .my-color { 
+            color: var(--primary-color); 
+        } 
+
+        .borad-5 { 
+            border-radius: 5px 
+        }
+        
+        .borad-10-top {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px; 
+        }
+ 
+        .borad-10 { 
+            border-radius: 10px 
+        } 
+ 
+        .borad-15 { 
+            border-radius: 15px 
+        } 
+  </style>
+</head>
+<body class="bg-white text-black">
+  <div class="max-w-md mx-auto p-4">
+
+    <!-- Saldo Saya Section -->
+    <div class="bg-[#00796B] rounded-lg p-4 flex justify-between items-center shadow-md">
+      <div>
+        <div class="flex items-center gap-2 text-white font-semibold text-sm">
+          <i class="fas fa-wallet text-xl"></i>
+          <span>Saldo Saya</span>
+        </div>
+        <div class="mt-1 text-[#fff] font-extrabold text-ml flex items-center gap-2 select-none">
+  <span id="rupiahAmount">Rp 0</span>
+  <i class="fas fa-sync-alt cursor-pointer text-xs" onclick="window.location.href='https://gametopp.olshopku.com/refresh_saldo'"></i>
+</div>
+
+<script>
+  function formatRupiah(amount) {
+    const formatted = new Intl.NumberFormat('id-ID', {
+      style: 'currency',
+      currency: 'IDR',
+      minimumFractionDigits: 0
+    }).format(amount);
+
+    document.getElementById('rupiahAmount').textContent = formatted;
+  }
+
+  // contoh: langsung tampil Rp 20.000 saat halaman dibuka
+  formatRupiah({{saldo_user}});
+</script>
+      </div>
+      <div class="flex gap-3 items-center text-white font-semibold text-sm">
+        <a href="https://gametopp.olshopku.com/akun/?page=chat" target="_blank" class="flex flex-col items-center gap-1">
+  <img alt="User with headset and laptop icon" class="w-7 h-7" src="https://iili.io/3Vhpmib.md.png" />
+  <span>Bantuan</span>
+</a>
+
+<a href="https://gametopp.olshopku.com/akun/?page=topup" target="_blank" class="flex flex-col items-center gap-1">
+  <div class="bg-[#004D40] rounded-full w-7 h-7 flex items-center justify-center text-white text-sm leading-none">+</div>
+  <span>Topup</span>
+</a>
+      </div>
+    </div>
+
+    <!-- Games Section -->
+    <div class="mt-8 flex justify-between" id="gamesSection">
+      <div class="flex flex-col items-center gap-2 game" onclick="loadSubcategories('Island', this)">
+        <div class="bg-[#004D40] rounded-xl p-1.5">
+          <img alt="Domino Island" class="w-14 h-14 rounded-lg" src="https://iili.io/3VhijcX.md.png" />
+        </div>
+        <span class="text-[#00796B] font-semibold text-sm">Island</span>
+      </div>
+      <div class="flex flex-col items-center gap-2 game" onclick="loadSubcategories('Royal', this)">
+        <div class="bg-[#E6E6E6] rounded-xl p-1.5">
+          <img alt="Royal" class="w-14 h-14 rounded-lg" src="https://iili.io/3VhsVbj.md.png" />
+        </div>
+        <span class="text-[#00796B] font-semibold text-sm">Royal</span>
+      </div>
+      <div class="flex flex-col items-center gap-2 game" onclick="loadSubcategories('Bearfish', this)">
+        <div class="bg-[#E6E6E6] rounded-xl p-1.5">
+          <img alt="Bearfish" class="w-14 h-14 rounded-lg" src="https://iili.io/3VhQxus.md.png" />
+        </div>
+        <span class="text-[#00796B] font-semibold text-sm">Bearfish</span>
+      </div>
+      <div class="flex flex-col items-center gap-2 game" onclick="loadSubcategories('Boss', this)">
+        <div class="bg-[#E6E6E6] rounded-xl p-1.5">
+          <img alt="Boss" class="w-14 h-14 rounded-lg" src="https://iili.io/3VhQLRn.md.png" />
+        </div>
+        <span class="text-[#00796B] font-semibold text-sm">Boss</span>
+      </div>
+    </div>
+
+    <!-- Masukan ID Section -->
+    <div class="bg-[#00796B] rounded-lg p-4 mt-8 relative shadow-md">
+      <div class="flex justify-between items-center mb-2 font-semibold text-white text-lg">
+        <span>Masukan ID</span>
+        <button aria-label="Help" class="text-white text-xl font-bold leading-none select-none" onclick="openPopup()">?</button>
+      </div>
+      <input
+        id="playerIdInput"
+        class="w-full rounded-lg bg-[#004D40] text-[#80CBC4] font-semibold text-lg p-3 outline-none placeholder:text-[#80CBC4]"
+        placeholder="Masukan Player ID"
+        type="text"
+      />
+    </div>
+
+    <!-- Popup Bantuan -->
+    <div id="customPopup" class="p-3 popup-overlay hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div class="popup-content bg-white rounded-lg p-6 max-w-md w-full relative">
+        <button class="absolute top-2 right-3 text-black text-xl font-bold" onclick="closePopup()">&times;</button>
+        <img src="https://img-cdn-sg.payermax.com/shoplay365/prod/upload/app-goods/9176fbea-6d85-4168-afa7-a3d0c9e745c020241209092756192.png"
+            class="w-full h-auto max-h-[60vh] object-contain mb-4" />
+        <p class="text-gray-800 text-center">Masukkan ID pengguna Anda. Contoh: <strong>12345678</strong></p>
+      </div>
+    </div>
+
+    <!-- Tabs Section -->
+    <div id="tabsSection" class="bg-[#00796B] rounded-lg mt-6 flex justify-between text-[#80CBC4] font-semibold text-lg shadow-md p-2"></div>
+
+    <!-- Produk Section -->
+    <div id="productSection" class="grid grid-cols-2 gap-3 py-2 px-1 w-full"></div>
+
+    <!-- Footer Section -->
+    <div class="bg-[#00796B] rounded-lg mt-8 p-4 shadow-md">
+      <div class="flex items-center gap-4">
+        <div class="bg-[#004D40] rounded-full w-12 h-12 flex items-center justify-center">
+          <i class="fab fa-telegram-plane text-white text-2xl"></i>
+        </div>
+        <div class="text-[#80CBC4] font-semibold text-base leading-tight">
+          <p>Hubungi Kami 1×24 Jam</p>
+          <p>Bantuan - Bongkar</p>
+        </div>
+      </div>
+      <hr class="border-dotted border-white border-t my-4" />
+      <div class="flex justify-between text-[#80CBC4] font-semibold text-base select-none">
+        <span>Aman</span>
+        <span>Terpercaya</span>
+        <span>Resmi</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detail -->
+    <section>
+      <div class="modal fade" id="detailCanv" tabindex="-1" aria-labelledby="detailCanvLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body bg-ke-dua borad-10">
+              <div class="text-center pb-3">
+                <p class="f-16 my-color font-bold">Detail Pesanan</p>
+              </div>
+              <div class="bg-utama p-2 borad-10" id="bodyCanv"></div>
+              <div class="" id="konfirmasi"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+<script>
+const produkNone = `
+  <div class="text-center mt-3">
+    <img src="https://mitra-scbo.my.id/wordpress/wp-content/uploads/2025/05/11500112.jpg" style="width: 75%; max-width: 300px; display: block; margin: auto; border-radius: 8px;">
+    <p class="mt-3 f-12 fwb-5">Sepertinya produk ini belum tersedia...</p>
+  </div>
+`;
+
+function openPopup() {
+  document.getElementById('customPopup').classList.remove('hidden');
+}
+
+function closePopup() {
+  document.getElementById('customPopup').classList.add('hidden');
+}
+
+var xmlHttpRequest = new XMLHttpRequest();
+xmlHttpRequest.open("GET", "https://openapi.bukaolshop.net/v1/app/kategori?token=eyJhcHAiOiIxNzI5NzEiLCJhdXRoIjoiMjAyNTA0MjYiLCJzaWduIjoiMStyaFJHc1J3WWlGdThjMStCWmRndz09In0=", true);
+xmlHttpRequest.onreadystatechange = function () {
+  if (xmlHttpRequest.readyState === 4 && xmlHttpRequest.status === 200) {
+    var response = JSON.parse(xmlHttpRequest.responseText);
+    window.categories = response.data;
+
+    // Auto load "Island" saat halaman dibuka
+    var islandGame = document.querySelector('.game');
+    if (islandGame) {
+      islandGame.click();
+    }
+  }
+};
+xmlHttpRequest.send();
+
+let currentPage = 1;
+
+function loadSubcategories(categoryName, selectedElement) {
+  var gameElements = document.querySelectorAll('.game');
+  gameElements.forEach(function(gameElement) {
+    gameElement.querySelector('div').classList.remove('bg-[#004D40]');
+    gameElement.querySelector('div').classList.add('bg-[#E6E6E6]');
+  });
+
+  selectedElement.querySelector('div').classList.remove('bg-[#E6E6E6]');
+  selectedElement.querySelector('div').classList.add('bg-[#004D40]');
+
+  var selectedCategory = window.categories.find(category => category.nama_kategori === categoryName);
+  var tabsSection = document.getElementById("tabsSection");
+  tabsSection.innerHTML = '';
+
+  if (selectedCategory && selectedCategory.sub_kategori.length > 0) {
+    selectedCategory.sub_kategori.forEach(subCategory => {
+      var tab = document.createElement("button");
+      tab.classList.add("py-3", "px-4", "w-full", "text-center");
+      tab.textContent = subCategory.nama_kategori;
+      tab.setAttribute("data-id-kategori", subCategory.id_kategori);
+      tab.onclick = function() {
+        var allTabs = document.querySelectorAll("#tabsSection button");
+        allTabs.forEach(btn => btn.classList.remove('active-tab'));
+        tab.classList.add('active-tab');
+        loadProducts(subCategory.id_kategori);
+      };
+      tabsSection.appendChild(tab);
+    });
+    // Auto klik tab pertama
+    tabsSection.querySelector('button').click();
+  } else {
+    tabsSection.innerHTML = '<span class="text-center w-full">No subcategories available.</span>';
+  }
+}
+
+let allProducts = [];
+
+function loadProducts(idKategori) {
+  var productSection = document.getElementById("productSection");
+  productSection.innerHTML = '';
+
+  allProducts = []; // reset agar tidak menumpuk
+
+  var page = typeof currentPage !== "undefined" ? currentPage : 1;
+
+  var xmlHttpRequest = new XMLHttpRequest();
+  xmlHttpRequest.open(
+    "GET",
+    `https://openapi.bukaolshop.net/v1/app/produk?token=eyJhcHAiOiIxNzI5NzEiLCJhdXRoIjoiMjAyNTA0MjYiLCJzaWduIjoiMStyaFJHc1J3WWlGdThjMStCWmRndz09In0=&page=${page}&id_kategori=${idKategori}&total_data=100`,
+    true
+  );
+
+  xmlHttpRequest.onreadystatechange = function () {
+    if (xmlHttpRequest.readyState === 4 && xmlHttpRequest.status === 200) {
+      var response = JSON.parse(xmlHttpRequest.responseText);
+      var products = response.data;
+      productSection.innerHTML = '';
+
+      if (products.length > 0) {
+         productSection.className = "grid grid-cols-2 gap-3 py-2 px-1 w-full";
+        // Urutkan berdasarkan harga_produk dari termurah ke termahal
+        products.sort((a, b) => a.harga_produk - b.harga_produk);
+
+        products.forEach(product => {
+          var productDiv = document.createElement("div");
+          productDiv.classList.add(
+            "w-full", "bg-[#00796B]", "rounded-lg", "p-3",
+            "flex", "items-start", "gap-3",
+            "shadow-md", "cursor-pointer",
+            "hover:bg-[#004D40]", "transition-colors"
+          );
+
+          var productImage = document.createElement("img");
+          productImage.classList.add("w-9", "h-9", "mt-2", "rounded-md", "object-cover");
+          productImage.src = product.list_gambar && product.list_gambar.length > 0 ? product.list_gambar[0] : "";
+
+          var productInfo = document.createElement("div");
+          productInfo.classList.add("flex-1");
+
+          var productName = document.createElement("p");
+          productName.classList.add("font-semibold", "text-white", "text-xs", "break-words");
+          productName.textContent = product.nama_produk;
+
+          var productPrice = document.createElement("p");
+          productPrice.classList.add("text-[#B2DFDB]", "text-xs", "mt-1");
+          productPrice.textContent = `Rp ${formatRupiah(product.harga_produk)}`;
+
+          productInfo.appendChild(productName);
+          productInfo.appendChild(productPrice);
+
+          productDiv.appendChild(productImage);
+          productDiv.appendChild(productInfo);
+
+          allProducts.push(product);
+
+          productDiv.onclick = function () {
+            const playerId = document.getElementById("playerIdInput").value.trim();
+            const nickHtml = '';
+            const code = 1;
+            nextDetail(product.id_produk, nickHtml, code);
+          };
+
+          productSection.appendChild(productDiv);
+        });
+      } else {
+        productSection.className = ""; 
+        productSection.innerHTML = produkNone;
+      }
+    }
+  };
+  xmlHttpRequest.send();
+}
+
+function nextDetail(id, nick, code) {
+  const playerId = document.getElementById("playerIdInput").value.trim();
+  let nomor = playerId === "" ? `<span class="text-danger">Masukan ID User</span>` : playerId;
+
+  const selectedProduct = allProducts.find(p => p.id_produk === id);
+  if (!selectedProduct) return;
+
+  document.getElementById("bodyCanv").innerHTML = `
+    <div class="p-0">
+      <div class="d-flex py-2 justify-content-between">
+        <p class="fwb-5 color-ke-dua">Produk :</p>
+        <p class="fwb-5 color-ke-tiga">${selectedProduct.nama_produk}</p>
+      </div>
+      <div class="d-flex justify-content-between">
+        <p class="fwb-5 color-ke-dua">ID :</p>
+        <p class="fwb-5 color-ke-tiga">${nomor}</p>
+      </div>
+      ${nick}
+      <div class="d-flex justify-content-between py-2">
+        <p class="fwb-5 color-ke-dua">Harga :</p>
+        <p class="fwb-6 color-ke-tiga">Rp ${formatRupiah(selectedProduct.harga_produk)}</p>
+      </div>
+    </div>
+  `;
+
+  document.getElementById("konfirmasi").innerHTML = `
+    <div class="mt-3">
+      <div class="d-flex align-items-center">
+        <div class="w-100 bg-ke-tiga p-2 text-center borad-15 btn-hov" data-bs-dismiss="modal" aria-label="Close">Batal</div>
+        <div class="w-100 my-bg text-white p-2 text-center borad-15 ms-3 btn-hov ${playerId === "" || code == 0 ? 'd-none' : ''}" id="btnBeli"
+          onclick="window.location.href='${selectedProduct.url_produk}?catatan=${encodeURIComponent(playerId)}'">Kirim</div>
+      </div>
+    </div>
+  `;
+
+  // Tampilkan modal
+  const modalElement = document.getElementById('detailCanv');
+  let modalInstance = bootstrap.Modal.getInstance(modalElement);
+  if (!modalInstance) {
+    modalInstance = new bootstrap.Modal(modalElement);
+  }
+  modalInstance.show();
+}
+
+// Fungsi tambahan buat format harga
+function formatRupiah(angka) {
+  return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+</script>
+
+</body>
+</html>
